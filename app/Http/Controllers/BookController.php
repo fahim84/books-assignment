@@ -41,8 +41,11 @@ class BookController extends Controller
     public function store(StoreBookRequest $request)
     {
         $details =[
-            'name' => $request->name,
-            'details' => $request->details
+            'title' => $request->title,
+            'author' => $request->author,
+            'publication_year' => $request->publication_year,
+            'isbn' => $request->isbn
+
         ];
         DB::beginTransaction();
         try{
@@ -80,8 +83,10 @@ class BookController extends Controller
     public function update(UpdateBookRequest $request, $id)
     {
         $updateDetails =[
-            'name' => $request->name,
-            'details' => $request->details
+            'title' => $request->title,
+            'author' => $request->author,
+            'publication_year' => $request->publication_year,
+            'isbn' => $request->isbn
         ];
         DB::beginTransaction();
         try{
