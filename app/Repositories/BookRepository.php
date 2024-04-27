@@ -3,7 +3,7 @@
 namespace App\Repositories;
 use App\Models\Book;
 use App\Interfaces\BookRepositoryInterface;
-class BookReposiotry implements BookRepositoryInterface
+class BookRepository implements BookRepositoryInterface
 {
     public function index(){
         return Book::all();

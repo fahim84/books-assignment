@@ -6,7 +6,7 @@ use App\Models\Book;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use App\Interfaces\BookRepositoryInterface;
-use App\Classes\ResponseClass;
+use App\Classes\ApiResponseClass;
 use App\Http\Resources\BookResource;
 use Illuminate\Support\Facades\DB;
 class BookController extends Controller
@@ -24,7 +24,7 @@ class BookController extends Controller
     {
         $data = $this->bookRepositoryInterface->index();
 
-        return ResponseClass::sendResponse(BookResource::collection($data),'',200);
+        return ApiResponseClass::sendResponse(BookResource::collection($data),'',200);
     }
 
     /**
@@ -52,10 +52,10 @@ class BookController extends Controller
             $book = $this->bookRepositoryInterface->store($details);
 
             DB::commit();
-            return ResponseClass::sendResponse(new BookResource($book),'Book Create Successful',201);
+            return ApiResponseClass::sendResponse(new BookResource($book),'Book Create Successful',201);
 
         }catch(\Exception $ex){
-            return ResponseClass::rollback($ex);
+            return ApiResponseClass::rollback($ex);
         }
     }
 
@@ -66,7 +66,7 @@ class BookController extends Controller
     {
         $book = $this->bookRepositoryInterface->getById($id);
 
-        return ResponseClass::sendResponse(new BookResource($book),'',200);
+        return ApiResponseClass::sendResponse(new BookResource($book),'',200);
     }
 
     /**
@@ -93,10 +93,10 @@ class BookController extends Controller
             $book = $this->bookRepositoryInterface->update($updateDetails,$id);
 
             DB::commit();
-            return ResponseClass::sendResponse('Book Update Successful','',201);
+            return ApiResponseClass::sendResponse('Book Update Successful','',201);
 
         }catch(\Exception $ex){
-            return ResponseClass::rollback($ex);
+            return ApiResponseClass::rollback($ex);
         }
     }
 
@@ -107,6 +107,6 @@ class BookController extends Controller
     {
         $this->bookRepositoryInterface->delete($id);
 
-        return ResponseClass::sendResponse('Book Delete Successful','',204);
+        return ApiResponseClass::sendResponse('Book Delete Successful','',204);
     }
 }
