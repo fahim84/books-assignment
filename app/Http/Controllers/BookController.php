@@ -64,9 +64,16 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        $book = $this->bookRepositoryInterface->getById($id);
+        if(Book::find($id))
+        {
+            $book = $this->bookRepositoryInterface->getById($id);
 
-        return ApiResponseClass::sendResponse(new BookResource($book),'',200);
+            return ApiResponseClass::sendResponse(new BookResource($book),'',200);
+        }
+        else
+        {
+            return ApiResponseClass::sendResponse(null,'Record not found',404);
+        }
     }
 
     /**
@@ -82,22 +89,30 @@ class BookController extends Controller
      */
     public function update(UpdateBookRequest $request, $id)
     {
-        $updateDetails =[
-            'title' => $request->title,
-            'author' => $request->author,
-            'publication_year' => $request->publication_year,
-            'isbn' => $request->isbn
-        ];
-        DB::beginTransaction();
-        try{
-            $book = $this->bookRepositoryInterface->update($updateDetails,$id);
+        if(Book::find($id))
+        {
+            $updateDetails =[
+                'title' => $request->title,
+                'author' => $request->author,
+                'publication_year' => $request->publication_year,
+                'isbn' => $request->isbn
+            ];
+            DB::beginTransaction();
+            try{
+                $book = $this->bookRepositoryInterface->update($updateDetails,$id);
 
-            DB::commit();
-            return ApiResponseClass::sendResponse('Book Update Successful','',201);
+                DB::commit();
+                return ApiResponseClass::sendResponse('Book Update Successful','',201);
 
-        }catch(\Exception $ex){
-            return ApiResponseClass::rollback($ex);
+            }catch(\Exception $ex){
+                return ApiResponseClass::rollback($ex);
+            }
         }
+        else
+        {
+            return ApiResponseClass::sendResponse(null,'Record not found',404);
+        }
+
     }
 
     /**
@@ -105,8 +120,15 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        $this->bookRepositoryInterface->delete($id);
+        if(Book::find($id))
+        {
+            $this->bookRepositoryInterface->delete($id);
 
-        return ApiResponseClass::sendResponse('Book Delete Successful','',204);
+            return ApiResponseClass::sendResponse('Book Delete Successful','',204);
+        }
+        else
+        {
+            return ApiResponseClass::sendResponse(null,'Record not found',404);
+        }
     }
 }
