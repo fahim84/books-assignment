@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateBookRequest;
 use App\Interfaces\BookRepositoryInterface;
 use App\Classes\ApiResponseClass;
 use App\Http\Resources\BookResource;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class BookController extends Controller
 {
@@ -20,11 +21,11 @@ class BookController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = $this->bookRepositoryInterface->index();
+        $data = $this->bookRepositoryInterface->index($request);
 
-        return ApiResponseClass::sendResponse(BookResource::collection($data),'',200);
+        return ApiResponseClass::sendResponse($data,'',200);
     }
 
     /**

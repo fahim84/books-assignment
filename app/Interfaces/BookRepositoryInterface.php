@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Interfaces;
-
+use Illuminate\Http\Request;
 interface BookRepositoryInterface
 {
-    public function index();
+    public function index(Request $request);
     public function getById($id);
     public function store(array $data);
     public function update(array $data,$id);

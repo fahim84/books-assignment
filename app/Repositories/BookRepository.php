@@ -3,10 +3,21 @@
 namespace App\Repositories;
 use App\Models\Book;
 use App\Interfaces\BookRepositoryInterface;
+use Illuminate\Http\Request;
 class BookRepository implements BookRepositoryInterface
 {
-    public function index(){
-        return Book::all();
+    public function index(Request $request){
+        $query = Book::query();
+        if($request->has('keyword'))
+        {
+            $query->where('title', 'LIKE', '%' . $request->keyword . '%');
+            $query->orWhere('author', 'LIKE', '%' . $request->keyword . '%');
+        }
+        if($request->has('limit'))
+        {
+            return $query->paginate($request->limit);
+        }
+        return $query->get();
     }
 
     public function getById($id){
