@@ -20,10 +20,22 @@
             $.ajax({
                 type: "GET",
                 crossDomain: true,
-                headers: {
-                    'Accept': 'application/json',
-                    'Authorization': 'Bearer 1|HHw1umcAXatwr6g9ECgWCAYKJzIDgiNHHi8ExRZk12979923'
+                beforeSend: function(request) {
+                    request.setRequestHeader("Authority", authorizationToken);
                 },
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader ("Authorization", 'Bearer 1|HHw1umcAXatwr6g9ECgWCAYKJzIDgiNHHi8ExRZk12979923');
+                    xhr.setRequestHeader ("Access-Control-Allow-Origin", "*");
+                    xhr.setRequestHeader ("Access-Control-Allow-Credentials", "true");
+                    xhr.setRequestHeader ("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+                    //xhr.setRequestHeader ("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+                    xhr.setRequestHeader ("Access-Control-Allow-Headers", "Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+                },
+                // headers: {
+                //     'Content-Type' : 'application/json',
+                //     'Authorization': 'Bearer 1|HHw1umcAXatwr6g9ECgWCAYKJzIDgiNHHi8ExRZk12979923',
+                //     'Access-Control-Allow-Origin':'*'
+                // },
                 dataType: "json",
                 url: 'https://test.fahimahmed.com/api/books',
                 //url: 'http://books.local/api/books',
