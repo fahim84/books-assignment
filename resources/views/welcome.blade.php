@@ -28,7 +28,7 @@
                 xhrFields: {
                     withCredentials: true
                 },
-                url: 'http://test.fahimahmed.com/api/books',
+                url: 'https://test.fahimahmed.com/api/books',
                 //url: 'http://books.local/api/books',
                 success: function (data) {
                     console.log(data);
