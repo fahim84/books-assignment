@@ -12,7 +12,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::apiResource('/books',BookController::class)->middleware('auth:sanctum');
+Route::apiResource('/books',BookController::class)->middleware(['auth:sanctum','cors']);
 
 Route::post('/sanctum/token', function (Request $request) {
 
@@ -31,10 +31,4 @@ Route::post('/sanctum/token', function (Request $request) {
     }
 
     return $user->createToken($request->device_name)->plainTextToken;
-});
-
-Route::post('/sanctum/test', function (Request $request) {
-
-    echo 'ttest';
-
 });

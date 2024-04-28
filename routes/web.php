@@ -7,6 +7,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/optimizeclear', function () {
+    $exitCode = Artisan::call('optimize:clear', []);
+    dump(Artisan::output());
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
