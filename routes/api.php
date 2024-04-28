@@ -12,7 +12,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::apiResource('/books',BookController::class)->middleware(['cors']);
+Route::apiResource('/books',BookController::class);
 
 Route::post('/sanctum/token', function (Request $request) {
 
