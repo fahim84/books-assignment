@@ -25,9 +25,6 @@
                     'Authorization': 'Bearer 1|HHw1umcAXatwr6g9ECgWCAYKJzIDgiNHHi8ExRZk12979923'
                 },
                 dataType: "json",
-                xhrFields: {
-                    withCredentials: true
-                },
                 url: 'https://test.fahimahmed.com/api/books',
                 //url: 'http://books.local/api/books',
                 success: function (data) {
