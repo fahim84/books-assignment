@@ -24,12 +24,7 @@ class ApiResponseClass
         if(!empty($message)){
             $response['message'] =$message;
         }
-
-        return response()->header([
-            'Content-Type' => 'application/json',
-            'access-control-allow-origin' => '*',
-            'cross-origin-resource-policy' => 'cross-origin',
-        ])->json($response, $code);
+        return response()->json($response, $code);
     }
 
 }
