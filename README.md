@@ -7,6 +7,47 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+# Setup Instruction
+
+Please Install PHP 8.2 and Laravel 11 in your machine.
+
+Clone Git Repository https://github.com/fahim84/books-assignment.git
+
+git clone https://github.com/fahim84/books-assignment.git
+
+After cloning git, rename .env.example file to .env
+
+Create a database and import db from database.sql on root directory of this project.
+
+Change DB credentials in .env file
+
+DB_DATABASE=booksassignment
+
+DB_USERNAME=xxxx
+
+DB_PASSWORD=xxxxxx
+
+After that run the following command
+
+composer install
+
+and finally run follwoing command
+
+
+npm install
+
+You will be able to see project running on this url
+
+http://localhost/books-assignment/public/
+
+I would also suggest to make virtual host 
+
+http://books.local/
+
+and point its directory to project-folder/public/
+
+
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
