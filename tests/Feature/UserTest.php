@@ -33,4 +33,18 @@ class UserTest extends TestCase
             ['Authorization' => 'Bearer 1|HHw1umcAXatwr6g9ECgWCAYKJzIDgiNHHi8ExRZk12979923']
         )->assertStatus(201);
     }
+
+    public function test_can_update_book(): void
+    {
+        $this->withoutExceptionHandling();
+        $formdata = [
+            'title' => 'unit title edited',
+            'author' => 'unit author edit',
+            'publication_year' => 2010,
+            'isbn' => 'isbn-1234-unit'
+        ];
+        $this->patch(route('books.update',18),$formdata,
+            ['Authorization' => 'Bearer 1|HHw1umcAXatwr6g9ECgWCAYKJzIDgiNHHi8ExRZk12979923']
+        )->assertStatus(201);
+    }
 }
