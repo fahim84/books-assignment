@@ -30,9 +30,12 @@ class BookController extends Controller
      */
     public function index(Request $request)
     {
-        $data = $this->bookRepositoryInterface->index($request);
-
-        return ApiResponseClass::sendResponse($data,'',200);
+        try {
+            $data = $this->bookRepositoryInterface->index($request);
+            return ApiResponseClass::sendResponse($data, '', 200);
+        } catch (\Exception $e) {
+            ApiResponseClass::throw($e);
+        }
     }
 
     /**

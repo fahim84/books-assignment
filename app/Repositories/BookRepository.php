@@ -6,7 +6,14 @@ use App\Interfaces\BookRepositoryInterface;
 use Illuminate\Http\Request;
 class BookRepository implements BookRepositoryInterface
 {
-    public function index(Request $request){
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+
+    public function index(Request $request): \Illuminate\Database\Eloquent\Collection|\Illuminate\Contracts\Pagination\LengthAwarePaginator|array
+    {
         $query = Book::query();
         if($request->has('keyword'))
         {
@@ -20,18 +27,37 @@ class BookRepository implements BookRepositoryInterface
         return $query->get();
     }
 
-    public function getById($id){
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getById($id): mixed
+    {
         return Book::findOrFail($id);
     }
 
-    public function store(array $data){
+    /**
+     * @param array $data
+     * @return mixed
+     */
+    public function store(array $data): mixed
+    {
         return Book::create($data);
     }
 
-    public function update(array $data,$id){
+    /**
+     * @param array $data
+     * @param $id
+     * @return mixed
+     */
+    public function update(array $data, $id): mixed
+    {
         return Book::whereId($id)->update($data);
     }
 
+    /**
+     * @param $id
+     */
     public function delete($id){
         Book::destroy($id);
     }
