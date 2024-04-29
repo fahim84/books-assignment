@@ -10,6 +10,8 @@ use App\Classes\ApiResponseClass;
 use App\Http\Resources\BookResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
+
 class BookController extends Controller
 {
     private BookRepositoryInterface $bookRepositoryInterface;
@@ -17,6 +19,11 @@ class BookController extends Controller
     public function __construct(BookRepositoryInterface $bookRepositoryInterface)
     {
         $this->bookRepositoryInterface = $bookRepositoryInterface;
+        header('Access-Control-Allow-Origin: *');
+        header('Content-Type: application/json');
+        header('Access-Control-Allow-Headers: Content-Type');
+        header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+        header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Authorization');
     }
     /**
      * Display a listing of the resource.

@@ -20,25 +20,20 @@
             $.ajax({
                 type: "GET",
                 crossDomain: true,
-                // beforeSend: function (xhr) {
-                //     xhr.setRequestHeader ("Authorization", 'Bearer 1|HHw1umcAXatwr6g9ECgWCAYKJzIDgiNHHi8ExRZk12979923');
-                //     xhr.setRequestHeader ("Access-Control-Allow-Origin", "*");
-                //     xhr.setRequestHeader ("Access-Control-Allow-Credentials", "true");
-                //     xhr.setRequestHeader ("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-                //     //xhr.setRequestHeader ("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
-                //     xhr.setRequestHeader ("Access-Control-Allow-Headers", "Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-                // },
                 headers: {
-                    'Content-Type' : 'application/json',
+                    'Content-Type': 'application/json',
                     'Authorization': 'Bearer 1|HHw1umcAXatwr6g9ECgWCAYKJzIDgiNHHi8ExRZk12979923',
                 },
                 dataType: "json",
                 url: 'https://test.fahimahmed.com/api/books',
-                //url: 'http://books.local/api/books',
-                success: function (data) {
+                success: function(data) {
                     console.log(data);
+                },
+                error: function(xhr, textStatus, errorThrown) {
+                    console.error("Error:", errorThrown);
                 }
             });
+
         </script>
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
