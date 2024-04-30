@@ -22,7 +22,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://books.local','http://localhost:5173'],
+    'allowed_origins' => ['http://books.local','http://localhost:5173','https://test.fahimahmed.com'],
 
     'allowed_origins_patterns' => [],
 
