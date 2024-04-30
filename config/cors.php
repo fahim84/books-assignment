@@ -17,12 +17,12 @@ return [
 
 //    'paths' => ['api/*', 'sanctum/csrf-cookie'],
 
-    'paths' => ['api/*'],
-    //'paths' => ['*'],
+    //'paths' => ['api/*'],
+    'paths' => ['*'],
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['http://books.local'],
+    'allowed_origins' => ['http://books.local','http://localhost:5173'],
 
     'allowed_origins_patterns' => [],
 
